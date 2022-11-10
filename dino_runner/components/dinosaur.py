@@ -15,6 +15,8 @@ class Dinosaur (Sprite):
         self.jump_img = {DEFAULT_TYPE: JUMPING}
         self.duck_img ={DEFAULT_TYPE: DUCKING}
         
+        self.sonidoSalto = pygame.mixer.Sound("dino_runner/assets\Other\jumping-mike-mario.wav")
+        
         self.type = DEFAULT_TYPE
         self.image = self.run_img[self.type][0]
         self.dino_rect = self.image.get_rect()
@@ -33,6 +35,7 @@ class Dinosaur (Sprite):
         if user_input[pygame.K_UP] and not self.dino_jump:
             self.dino_run = False
             self.dino_jump = True
+            self.sonidoSalto.play()
             
         elif user_input[pygame.K_DOWN] and not self.dino_duck:
             self.dino_run = False

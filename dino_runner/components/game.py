@@ -11,6 +11,9 @@ class Game:
         pygame.init()
         pygame.display.set_caption(TITLE)
         pygame.display.set_icon(ICON)
+        pygame.mixer.music.load("dino_runner/assets\Other\out-run-125180.mp3")
+        pygame.mixer.music.play()
+        
         self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
         self.clock = pygame.time.Clock()
         self.playing = False
@@ -41,7 +44,7 @@ class Game:
             if event.type == pygame.QUIT:
                 self.playing = False    
         self.screen.fill((255, 255, 255))
-        self.screen.blit(BACKGROUND, [0,0])
+       
         
     def update(self):
         self.player.update()
@@ -69,14 +72,16 @@ class Game:
             self.screen.blit(BG, (image_width + self.x_pos_bg, self.y_pos_bg))
             self.x_pos_bg = 0
         self.x_pos_bg -= self.game_speed
+        
     def draw_score(self):
         self.points +=1
         
         if self.points %100 == 0:
             self.game_speed += 2
-            
         text, text_rect = text_utils.get_score_element(self.points)
         self.screen.blit(text,text_rect)
+        
+    
         
         
     
